@@ -32,7 +32,39 @@ struct ContentView: View {
                 }
             }
                 .font(.system(size: 30))
+                .foregroundColor(Color.white)
                 .padding()
+                .frame(maxWidth:.infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+            Button("Calculate n³") {
+                if let n = Int(inputN) {
+                    let cube = n*n*n
+                    result = "\(cube)"
+                } else {
+                    result = "Please input a valid number."
+                }
+            }
+                .font(.system(size: 30))
+                .foregroundColor(Color.white)
+                .padding()
+                .frame(maxWidth:.infinity)
+                .background(Color.purple)
+                .cornerRadius(10)
+            Button("Double n") {
+                if let n = Int(inputN) {
+                    let double = n*2
+                    result = "\(double)"
+                } else {
+                    result = "Please input a valid number."
+                }
+            }
+                .font(.system(size: 30))
+                .foregroundColor(Color.white)
+                .padding()
+                .frame(maxWidth:.infinity)
+                .background(Color.green)
+                .cornerRadius(10)
             Text("Results: \(result)")
                 .font(.system(size: 30))
         }
