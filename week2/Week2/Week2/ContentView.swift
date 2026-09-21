@@ -11,7 +11,7 @@ struct ContentView: View {
     @State var searchText: String = ""
     @State var places: [Place] = [
         Place(name: "HCMIU", lat: 10.8506, long: 106.7719),
-        Place(name: "Home", lat: 10, long: 30),
+        Place(name: "Home", lat: 10.8503, long: 106.7841),
         Place(name: "Work", lat: 20, long: 50),
         Place(name: "Study", lat: 30, long: 40)
     ]
@@ -39,18 +39,18 @@ struct ContentView: View {
                     .padding(10)
                 
                 List(filteredPlaces) { place in
-                    HStack(spacing: 12) {
-                        VStack(alignment: .leading) {
-                            Text(place.name)
-                                .font(.headline)
-                            Text("\(place.lat), \(place.long)")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                    NavigationLink(destination: MapView(place: place)) {
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading) {
+                                Text(place.name)
+                                    .font(.headline)
+                                Text("\(place.lat), \(place.long)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundStyle(Color.gray)
                     }
+
                 }
                 
                 NavigationLink(destination: AddPlaceView(onSave: { newPlace in
