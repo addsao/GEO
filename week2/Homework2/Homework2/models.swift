@@ -1,48 +1,42 @@
+//
+//  Models.swift
+//  Homework2
+//
+//  Created by MAY 02 on 21/9/26.
+//
+
 import Foundation
 import CoreLocation
-import Combine
+
 
 class Restaurant: Identifiable {
     let id = UUID()
     var name: String
     var address: String
-    var latitude: Double
-    var longitude: Double
+    var lat: Double
+    var long: Double
     
-    init(name: String, address: String, latitude: Double, longitude: Double) {
+    init(name: String, address: String, lat: Double, long: Double) {
         self.name = name
         self.address = address
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-    
-    var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.lat = lat
+        self.long = long
     }
 }
 
-class Order: Identifiable, ObservableObject {
+class Order: Identifiable {
     let id = UUID()
-    var restaurant: Restaurant
     var customerName: String
     var deliveryAddress: String
-    var latitude: Double
-    var longitude: Double
+    var lat: Double
+    var long: Double
+    var status: String
     
-    @Published var status: String
-    @Published var distance: Double?
-    @Published var expectedTravelTime: TimeInterval?
-    
-    init(restaurant: Restaurant, customerName: String, deliveryAddress: String, latitude: Double, longitude: Double, status: String = "Chưa giao") {
-        self.restaurant = restaurant
+    init(customerName: String, deliveryAddress: String, lat: Double, long: Double, status: String) {
         self.customerName = customerName
         self.deliveryAddress = deliveryAddress
-        self.latitude = latitude
-        self.longitude = longitude
-        self.status = status
-    }
-    
-    var deliveryCoordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.lat = lat
+        self.long = long
+        self.status = "Chua giao"
     }
 }
